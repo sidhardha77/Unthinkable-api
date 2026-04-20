@@ -1,0 +1,94 @@
+<div class="container">
+
+    <h1 class="title">Knowledge-Base Search Engine</h1>
+
+    <!-- UPLOAD -->
+    <div class="upload-box">
+
+        <input type="file" multiple (change)="onFileChange($event)" />
+
+        <button (click)="upload()" [disabled]="uploading()">
+            Upload PDFs
+        </button>
+
+        <p *ngIf="uploading()">Uploading...</p>
+
+    </div>
+
+    <!-- FILE LIST -->
+    <div *ngIf="selectedFiles().length > 0" class="card">
+        <h3>Uploaded Files</h3>
+
+        <div *ngFor="let file of selectedFiles(); let i = index" class="file-item">
+            {{ file.name }}
+
+            <button (click)="removeFile(i)">Remove</button>
+        </div>
+    </div>
+
+    <!-- QUESTION BOX -->
+    <div class="upload-box">
+
+        <input type="text" placeholder="Ask a question from PDF..." [value]="question()"
+            (input)="question.set($any($event.target).value)" />
+
+        <button (click)="ask()" [disabled]="loading()">
+            Ask
+        </button>
+
+    </div>
+
+    <!-- LOADER -->
+    <div *ngIf="loading()" class="loader-container">
+        <div class="loader-card">
+            <i class="fas fa-robot ai-icon"></i>
+
+            <p class="loader-text">
+                Thinking
+                <span class="dots">
+                    <span></span><span></span><span></span>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <!-- ANSWER -->
+    <div *ngIf="answer()" class="results-container">
+
+        <div class="card">
+            <div class="question">
+                Q: {{ question() }}
+            </div>
+
+            <div class="answer">
+                A: {{ answer() }}
+            </div>
+        </div>
+
+        <div *ngIf="context().length > 0" class="card">
+            <h3>Context Used:</h3>
+            <div *ngFor="let c of context()">
+                <p>{{ c }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- POPUP MODAL -->
+    <div class="popup-overlay" *ngIf="showPopup()">
+
+        <div class="popup-box">
+
+            <h2>Warning</h2>
+
+            <p>{{ popupMessage() }}</p>
+
+            <button (click)="closePopup()">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
