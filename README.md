@@ -1,3 +1,7 @@
+## 🎥 Demo Video
+
+Watch the demo here:  
+https://drive.google.com/file/d/1Bb-Stvpc7sAXVQDLBRWnU1z1eiFbCmRP/view
 # 📄 Knowledge-Base Search Engine (RAG System)
 
 This project is a **Retrieval-Augmented Generation (RAG)** based system that allows users to upload a PDF and ask questions based on its content.
